@@ -53,10 +53,10 @@ button.addEventListener('click', launch);
 
 function launch() {
 try {
+const newWin = window.open("about:blank", "_blank");
 fetch("https://cdn.jsdelivr.net/gh/v3ntcr4wl3r/srb2-web@main/index.html?t="+Date.now())
 .then(response => response.text())
 .then(text => {
-const newWin = window.open("about:blank", "_blank");
 if (newWin) {
 newWin.document.open();
 newWin.document.write(text);
@@ -65,6 +65,7 @@ newWin.document.close();
 })
 .catch(error => {
 console.error('Error loading SRB2:', error);
+if (newWin) newWin.close();
 alert('Failed to load SRB2. Please check the console for details.');
 });
 } catch (error) {
